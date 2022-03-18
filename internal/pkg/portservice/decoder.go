@@ -2,6 +2,7 @@ package portservice
 
 import (
 	pb "PortsProject/internal/pkg/portsprotobuf"
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -9,7 +10,8 @@ import (
 )
 
 func (ps *PortService) DecodePortsFromFile(file io.Reader) error {
-	decoder := json.NewDecoder(file)
+	f := bufio.NewReader(file)
+	decoder := json.NewDecoder(f)
 	defer ps.Wg.Done()
 
 	decoder.Token()
