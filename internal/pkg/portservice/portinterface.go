@@ -5,6 +5,8 @@ import (
 	"io"
 )
 
+//go:generate go run github.com/maxbrunsfeld/counterfeiter/v6 . PortsInterface
+
 type PortsInterface interface {
 	StartGRPClient() (*grpc.ClientConn, error)
 	SendPort(port *Port) error
